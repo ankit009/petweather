@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+		<div class="jumbotron">
+			<h1>Does My Pet Need An Umbrella ?</h1>
+		</div>
+		<div class="container">
+  <h1>Select a pet to find out.</h1>
+  		
+			<% if ( sessionFlash && sessionFlash.message) { %>
+			<div class="alert alert-success">
+				<%= sessionFlash.message %>
+			</div>
+			<% } %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Breed</th>
+        <th></th>
+	  </tr>
+    </thead>
+    <tbody>
+	<% 
+	if(petsAll.length > 0){
+	for(var i=0; i<petsAll.length; i++) {%>
+    <tr>
+        <td><span><%= petsAll[i].name %></span></td>
+        <td><span><%= petsAll[i].type %></span></td>
+        <td><span><%= petsAll[i].breed %></span></td>
+        <td><span><a href="petview/<%= petsAll[i]._id %>">View</a></span></td>
+      </tr>
+  <% }
+  } %>
+      
+      
+    </tbody>
+  </table>
+</div>	
+
+	</main>
+		
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>

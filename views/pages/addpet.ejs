@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+		<div class="row">
+			<div class="col-sm-8">
+			
+				<div class="well">
+					<h3>Add New Pet</h3>
+				</div>
+				
+			<% if ( sessionFlash && sessionFlash.message) { %>
+			<div class="alert alert-danger">
+				<%= sessionFlash.message %>
+			</div>
+			<% } %>
+				
+				<form method="POST" action="/savePet">
+					  <div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" name="name" required>
+					  </div>
+					  <div class="form-group">
+						<label for="type">Type</label>
+						<input type="text" class="form-control" id="type" name="type" required>
+					  </div>
+					  <div class="form-group">
+						<label for="breed">Breed</label>
+						<input type="text" class="form-control" id="breed" name="breed" required>
+					  </div>
+					  <div class="form-group">
+						<label for="location">Location</label>
+						<input type="text" class="form-control" id="location" name="location" required>
+					  </div>
+					  <div class="form-group">
+						<label for="latitude">Latitude</label>
+						<input type="text" class="form-control" id="latitude" name="latitude" required>
+					  </div>
+					  <div class="form-group">
+						<label for="longitude">Longitude</label>
+						<input type="text" class="form-control" id="longitude" name="longitude" required>
+					  </div>
+					  <button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>

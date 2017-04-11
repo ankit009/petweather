@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj75e2GKbUSVWklZG-hGvtE-BBbp9RnPM" async defer></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+		  google.charts.load("current", {packages:["map"]});
+		  google.charts.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			  ['Lat', 'Long', 'Name'],
+			  [<%=petInfo.latitude%>, <%=petInfo.longitude%>, 'Pet is Here !']
+			]);
+
+			var map = new google.visualization.Map(document.getElementById('map_div'));
+			map.draw(data, {
+			  showTooltip: true,
+			  showInfoWindow: true
+			});
+		  }
+        </script>
+	</header>
+
+	<main>
+		<div class="row">
+			<div class="col-sm-8">
+			  <div class="jumbotron">
+					<img src="/img/petweather.jpg" />
+				</div>
+				
+			</div>
+			<div class="col-sm-4">
+				
+				<div class="well">
+				
+					<% if(weatherCondition.match(/rain/gi)) { %>
+					<h3>Yup ! </h3> <br /> 
+					<p>Pet does need Umbrella in <%= petInfo.location %> because it is <%= weatherCondition %></p>
+					<% } else { %> 
+					<h3>Nope !</h3><br />
+					<p>Pet does not need Umbrella in <%= petInfo.location %> because it is <%= weatherCondition %></p>
+					<% } %>
+					
+				</div>
+				<div id="map_div" style="width: 400px; height: 300px"></div>
+
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>
